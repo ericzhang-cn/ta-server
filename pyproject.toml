@@ -1,0 +1,19 @@
+[project]
+name = "ta-server"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "blue>=0.9.1",
+    "click>=8.2.1",
+    "fastapi[standard]>=0.116.1",
+    "pydantic>=2.11.7",
+    "pytest>=8.4.1",
+    "ta-lib>=0.6.5",
+]
+
+[dependency-groups]
+standard = [
+    "fastapi>=0.116.1",
+]
