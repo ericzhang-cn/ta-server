@@ -38,7 +38,7 @@ def run_ta_function(
             'volume': volume,
         },
         **kwargs,
-    ).tolist()
+    )
 
 
 def list_ta_functions() -> list[TAFunction]:

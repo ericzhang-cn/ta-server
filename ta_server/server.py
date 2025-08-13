@@ -25,5 +25,25 @@ def run_function(req: CalculateRequest):
         volume=np.array(req.volume),
         **req.params,
     )
-    result = [None if np.isnan(x) or np.isinf(x) else x for x in result]
-    return result
+    if isinstance(result, np.ndarray):
+        if len(req.output_labels) > 0:
+            output_label = req.output_labels[0]
+        else:
+            output_label = 'output_0'
+        return {
+            output_label: [
+                x if (not np.isnan(x) and not np.isinf(x)) else None
+                for x in result
+            ]
+        }
+    elif isinstance(result, list):
+        if len(req.output_labels) >= len(result):
+            output_labels = req.output_labels
+        else:
+            output_labels = [f'output_{i}' for i in range(len(result))]
+        return {
+            output_labels[i]: [
+                x if (not np.isnan(x) and not np.isinf(x)) else None for x in y
+            ]
+            for i, y in enumerate(result)
+        }

@@ -20,3 +20,4 @@ class CalculateRequest(BaseModel):
     close: Union[list[float], None] = None
     volume: Union[list[float], None] = None
     params: dict[str, Any] = {}
+    output_labels: list[str] = []
